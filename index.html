@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentální hygiena — Alena Obalová | Uherské Hradiště</title>
+  <meta name="description" content="Profesionální dentální hygiena v centru Uherského Hradiště. Alena Obalová DiS. — čištění zubního kamene, AIR FLOW, bělení zubů. Přijímáme nové pacienty.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===================== RESET & ROOT ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
+    body { overflow-x: hidden; font-family: 'Nunito', sans-serif; font-size: 1rem; line-height: 1.75; color: var(--text); background: var(--bg); }
+
+    :root {
+      --bg:           #FAFCFF;
+      --surface:      #F0F4FF;
+      --surface-2:    #E8F5EF;
+      --indigo:       #4F46E5;
+      --indigo-dark:  #3730A3;
+      --indigo-light: #EEF2FF;
+      --mint:         #10B981;
+      --mint-dark:    #059669;
+      --mint-light:   #D1FAE5;
+      --dark:         #111827;
+      --dark-2:       #1F2937;
+      --text:         #374151;
+      --muted:        #6B7280;
+      --border:       #E5E7EB;
+      --white:        #FFFFFF;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.15; }
+
+    /* ===================== NAV ===================== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      background: var(--indigo);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon svg { width: 22px; height: 22px; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-size: 1.65rem; font-weight: 800; color: var(--dark); }
+    .nav-logo-text span { color: var(--indigo); }
+    nav.scrolled .nav-logo-text { color: var(--dark); }
+    nav:not(.scrolled) .nav-logo-text { color: var(--white); }
+    nav:not(.scrolled) .nav-logo-text span { color: #a5b4fc; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.85); }
+    nav:not(.scrolled) .nav-links a:hover { color: #fff; }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    nav.scrolled .nav-links a:hover { color: var(--indigo); }
+
+    .nav-cta {
+      background: var(--mint); color: #fff !important;
+      padding: 0.55rem 1.2rem; border-radius: 8px;
+      transition: background 0.2s !important;
+    }
+    nav:not(.scrolled) .nav-cta { background: rgba(255,255,255,0.15) !important; color: #fff !important; }
+    nav:not(.scrolled) .nav-cta:hover { background: rgba(255,255,255,0.25) !important; }
+    nav.scrolled .nav-cta { background: var(--mint) !important; }
+    nav.scrolled .nav-cta:hover { background: var(--mint-dark) !important; color: #fff !important; }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 4px; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    nav.scrolled .nav-hamburger span { background: var(--dark); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: var(--white);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;
+      text-decoration: none; color: var(--dark);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover { color: var(--indigo); }
+    .nav-mobile .nav-cta-mobile {
+      background: var(--indigo); color: #fff !important;
+      padding: 0.8rem 2rem; border-radius: 10px; font-size: 1.1rem !important;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #312E81 0%, #4F46E5 40%, #2563EB 70%, #0EA5E9 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg-circles {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-bg-circles span {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .hero-bg-circles span:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -100px; }
+    .hero-bg-circles span:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -100px; background: rgba(16,185,129,0.08); }
+    .hero-bg-circles span:nth-child(3) { width: 200px; height: 200px; top: 30%; right: 20%; background: rgba(255,255,255,0.03); }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1140px; margin: 0 auto; padding: 8rem 2rem 6rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(16,185,129,0.2); color: #6EE7B7;
+      border: 1px solid rgba(16,185,129,0.3);
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #34D399; animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800;
+      color: #fff; line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .hero-title em { color: #6EE7B7; font-style: normal; }
+    .hero-subtitle {
+      font-size: 1.1rem; color: rgba(255,255,255,0.75);
+      line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--mint); color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+      min-height: 44px;
+    }
+    .btn-primary:hover { background: var(--mint-dark); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.12); color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+      min-height: 44px;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 2.5rem;
+      color: #fff;
+    }
+    .hero-card-icon {
+      width: 60px; height: 60px;
+      background: rgba(16,185,129,0.2); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .hero-card-title {
+      font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700;
+      margin-bottom: 0.5rem; color: #fff;
+    }
+    .hero-card-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    .hero-stat { text-align: center; padding: 1rem; background: rgba(255,255,255,0.08); border-radius: 12px; }
+    .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #6EE7B7; }
+    .hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .hero-chip {
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
+      padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+    }
+
+    /* ===================== WAVE DIVIDERS ===================== */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ===================== SECTIONS COMMON ===================== */
+    .section-inner {
+      max-width: 1140px; margin: 0 auto; padding: 6rem 2rem;
+    }
+    .section-tag {
+      display: inline-block; color: var(--indigo);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800;
+      color: var(--dark); margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.75;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ===================== ABOUT ===================== */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-main {
+      background: linear-gradient(135deg, var(--indigo) 0%, #2563EB 100%);
+      border-radius: 20px; padding: 2.5rem;
+      color: #fff; text-align: center;
+    }
+    .about-avatar {
+      width: 90px; height: 90px;
+      background: rgba(255,255,255,0.2); border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+      color: #fff;
+    }
+    .about-name { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; }
+    .about-title-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 0.3rem; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1.2rem; }
+    .about-badge {
+      background: rgba(255,255,255,0.15); color: #fff;
+      padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+    }
+    .about-card-float {
+      background: var(--mint-light); border-radius: 14px; padding: 1.2rem 1.5rem;
+      margin-top: 1rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .about-card-float-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--mint); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-card-float-text { font-size: 0.9rem; color: var(--dark); font-weight: 600; }
+    .about-card-float-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.1rem; }
+
+    .about-text h2 { margin-bottom: 1rem; }
+    .about-text p { color: var(--text); margin-bottom: 1rem; font-size: 1rem; }
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.95rem; color: var(--text);
+    }
+    .about-list li::before {
+      content: ''; width: 20px; height: 20px; flex-shrink: 0;
+      background: var(--mint-light); border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2310B981'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-size: 14px; background-repeat: no-repeat; background-position: center;
+      margin-top: 2px;
+    }
+
+    /* ===================== SERVICES ===================== */
+    .services { background: var(--surface); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white); border-radius: 16px; padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--indigo), var(--mint));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(79,70,229,0.1); border-color: transparent; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--indigo-light); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .service-icon svg { width: 26px; height: 26px; }
+    .service-num { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .service-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.6rem; }
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+    .service-price {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--indigo);
+    }
+    .service-price-suffix { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-left: 0.2rem; }
+
+    /* ===================== PROCESS ===================== */
+    .process { background: var(--white); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 30px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--indigo-light), var(--mint-light));
+    }
+    .process-step { text-align: center; position: relative; }
+    .process-step-num {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--indigo);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--indigo);
+      margin: 0 auto 1.2rem;
+      position: relative; z-index: 1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .process-step:hover .process-step-num { background: var(--indigo); color: #fff; }
+    .process-step-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+    .process-step-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ===================== HOURS ===================== */
+    .hours { background: var(--dark); color: #fff; }
+    .hours .section-tag { color: #6EE7B7; }
+    .hours .section-title { color: #fff; }
+    .hours .section-subtitle { color: rgba(255,255,255,0.6); }
+    .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.9rem 0; font-size: 0.95rem; }
+    .hours-table td:first-child { color: rgba(255,255,255,0.6); font-weight: 500; }
+    .hours-table td:last-child { text-align: right; font-weight: 700; color: #fff; }
+    .hours-table td.closed { color: rgba(255,255,255,0.3) !important; }
+    .hours-note {
+      margin-top: 1.2rem; padding: 1rem 1.2rem;
+      background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 10px; font-size: 0.88rem; color: #6EE7B7;
+      display: flex; gap: 0.6rem; align-items: flex-start;
+    }
+    .hours-cta-box {
+      background: linear-gradient(135deg, var(--indigo) 0%, #2563EB 100%);
+      border-radius: 20px; padding: 2.5rem; text-align: center;
+    }
+    .hours-cta-box h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 0.7rem; }
+    .hours-cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 1.8rem; font-size: 0.95rem; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #fff; color: var(--indigo);
+      padding: 0.85rem 1.8rem; border-radius: 10px;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: transform 0.2s;
+      min-height: 44px;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+    .hours-phone {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-top: 1rem;
+    }
+    .hours-phone a { color: #fff; font-weight: 700; text-decoration: none; }
+
+    /* ===================== CONTACT ===================== */
+    .contact { background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; }
+    .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .contact-item-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--indigo-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-item-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.2rem; }
+    .contact-item-value { font-size: 1rem; font-weight: 600; color: var(--dark); }
+    .contact-item-value a { color: var(--indigo); text-decoration: none; }
+    .contact-item-value a:hover { text-decoration: underline; }
+
+    .contact-form {
+      background: var(--white); border-radius: 20px; padding: 2.5rem;
+      border: 1px solid var(--border);
+    }
+    .contact-form h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.85rem; font-weight: 700; color: var(--dark); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.75rem 1rem; border-radius: 10px;
+      border: 1.5px solid var(--border);
+      font-family: 'Nunito', sans-serif; font-size: 1rem; color: var(--dark);
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 44px;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      width: 100%; padding: 0.9rem; border-radius: 10px;
+      background: var(--indigo); color: #fff;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 700;
+      border: none; cursor: pointer; min-height: 44px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-submit:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+    .form-success { display: none; text-align: center; padding: 2rem; }
+    .form-success.visible { display: block; }
+    .form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .form-success p { color: var(--mint); font-weight: 700; font-size: 1.1rem; }
+
+    /* ===================== MAP ===================== */
+    .map-section { background: var(--surface); }
+    .map-section .section-inner { padding: 0; }
+    .map-wrapper { width: 100%; height: 350px; border-radius: 0; overflow: hidden; }
+    .map-wrapper iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--dark-2); color: rgba(255,255,255,0.6);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    .footer-brand .nav-logo-text { color: #fff; font-size: 1.4rem; }
+    .footer-brand .nav-logo-text span { color: #a5b4fc; }
+    .footer-brand p { margin-top: 1rem; font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #a5b4fc; }
+    .footer-col p { font-size: 0.88rem; line-height: 1.7; }
+    .footer-bottom {
+      max-width: 1140px; margin: 2rem auto 0;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem;
+    }
+
+    /* ===================== INSURANCE STRIP ===================== */
+    .insurance { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .insurance .section-inner { padding: 3rem 2rem; }
+    .insurance-label { text-align: center; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2rem; }
+    .insurance-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    .ins-badge {
+      padding: 0.5rem 1.1rem; border-radius: 100px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.85rem; font-weight: 700; color: var(--dark);
+    }
+
+    /* ===================== ANIMATIONS ===================== */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-card { max-width: 480px; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-steps::before { display: none; }
+      .hours-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .section-inner { padding: 4rem 1.25rem; }
+      .hero-inner { padding: 7rem 1.25rem 4rem; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+      .hours-cta-box { padding: 1.8rem; }
+      .contact-form { padding: 1.5rem; }
+      .hero-card { padding: 1.5rem; }
+    }
+
+    @media (max-width: 428px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-title { font-size: 1.7rem; }
+      nav { padding: 0.75rem 1.25rem; }
+    }
+
+    @media (max-width: 375px) {
+      .hero-title { font-size: 2rem; }
+      .hero-stats { gap: 0.6rem; }
+    }
+
+    @media (max-width: 320px) {
+      .hero-title { font-size: 1.8rem; }
+      .btn-primary, .btn-ghost { font-size: 0.92rem; padding: 0.75rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C8 2 5 5.5 5 9c0 2.5 1 4.5 2.5 6L9 20h6l1.5-5C18 13.5 19 11.5 19 9c0-3.5-3-7-7-7z"/>
+          <path d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text">DH<span>obalová</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#o-nas">O nás</a>
+      <a href="#sluzby">Služby</a>
+      <a href="#postup">Postup</a>
+      <a href="#ordinacni-doba">Ordinace</a>
+      <a href="#kontakt" class="nav-cta">Objednat se</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="mobileNav">
+  <a href="#o-nas" class="mobile-link">O nás</a>
+  <a href="#sluzby" class="mobile-link">Služby</a>
+  <a href="#postup" class="mobile-link">Postup</a>
+  <a href="#ordinacni-doba" class="mobile-link">Ordinace</a>
+  <a href="#kontakt" class="mobile-link nav-cta-mobile">Objednat se</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Přijímáme nové pacienty</div>
+      <h1 class="hero-title">Staráme se<br>o váš <em>zdravý úsměv</em></h1>
+      <p class="hero-subtitle">Profesionální dentální hygiena v centru Uherského Hradiště. Pečujeme o zuby dětí, dospělých i seniorů — s péčí a pozorností.</p>
+      <div class="hero-actions">
+        <a href="tel:+420731657079" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Zavolat: 731 657 079
+        </a>
+        <a href="#sluzby" class="btn-ghost">
+          Zobrazit služby
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="hero-card-title">Alena Obalová, DiS.</div>
+        <div class="hero-card-text">Dentální hygienistka · Uherské Hradiště</div>
+        <div class="hero-chips">
+          <span class="hero-chip">AIR FLOW</span>
+          <span class="hero-chip">Bělení zubů</span>
+          <span class="hero-chip">Parodontitida</span>
+          <span class="hero-chip">Děti i dospělí</span>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Hlavní služby</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">5</div>
+            <div class="hero-stat-label">Dnů v týdnu</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">950</div>
+            <div class="hero-stat-label">Kč od / recall</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">UH</div>
+            <div class="hero-stat-label">Centrum města</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE hero → about -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M-50,40 C360,80 1080,0 1490,40 L1490,80 L-50,80 Z" fill="#ffffff"/>
+</svg>
+
+<!-- ABOUT -->
+<section class="about" id="o-nas">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual fade-up">
+        <div class="about-card-main">
+          <div class="about-avatar">AO</div>
+          <div class="about-name">Alena Obalová, DiS.</div>
+          <div class="about-title-text">Certifikovaná dentální hygienistka</div>
+          <div class="about-badges">
+            <span class="about-badge">Diplom. specialistka</span>
+            <span class="about-badge">AIR FLOW certified</span>
+          </div>
+        </div>
+        <div class="about-card-float">
+          <div class="about-card-float-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          </div>
+          <div>
+            <div class="about-card-float-text">Přijímáme nové pacienty</div>
+            <div class="about-card-float-sub">Objednejte se telefonicky nebo formulářem</div>
+          </div>
+        </div>
+        <div class="about-card-float" style="background: var(--indigo-light);">
+          <div class="about-card-float-icon" style="background: var(--indigo);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="about-card-float-text">Dům HUBERT, Dlouhá 228</div>
+            <div class="about-card-float-sub">Centrum Uherského Hradiště</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text fade-up d2">
+        <span class="section-tag">O nás</span>
+        <h2 class="section-title">Péče, na kterou se<br>můžete spolehnout</h2>
+        <p>Správná péče o dutinu ústní je jedinou cestou k udržení funkčního chrupu po celý život. V naší ordinaci v centru Uherského Hradiště se věnujeme dentální hygieně pro všechny věkové skupiny.</p>
+        <p>Pracuji s nejmodernějšími metodami včetně technologie AIR FLOW pro šetrné a efektivní odstranění pigmentací a zubního plaku.</p>
+        <ul class="about-list">
+          <li>Vhodné pro děti, dospělé i seniory</li>
+          <li>Péče pro těhotné ženy</li>
+          <li>Moderní AIR FLOW technologie</li>
+          <li>Individuální přístup a edukace</li>
+          <li>Léčba krvácení dásní a parodontitidy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSURANCE -->
+<div class="insurance">
+  <div class="section-inner">
+    <div class="insurance-label">Příspěvky pojišťoven na dentální hygienu 2025</div>
+    <div class="insurance-badges">
+      <span class="ins-badge">VZP 111</span>
+      <span class="ins-badge">VoZP 201</span>
+      <span class="ins-badge">ČPZP 205</span>
+      <span class="ins-badge">OZP 207</span>
+      <span class="ins-badge">ZPMVČR 211</span>
+      <span class="ins-badge">MV ČR 213</span>
+    </div>
+  </div>
+</div>
+
+<!-- WAVE about → services -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fff;">
+  <path d="M-50,40 C360,0 1080,80 1490,40 L1490,80 L-50,80 Z" fill="#F0F4FF"/>
+</svg>
+
+<!-- SERVICES -->
+<section class="services" id="sluzby">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-tag">Ceník služeb</span>
+      <h2 class="section-title">Co pro vás uděláme</h2>
+      <p class="section-subtitle">Komplexní péče o vaše zuby a dásně — od preventivní hygieny po profesionální bělení.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up d1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5.5 5 9c0 2.5 1 4.5 2.5 6L9 20h6l1.5-5C18 13.5 19 11.5 19 9c0-3.5-3-7-7-7z"/><path d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3"/></svg>
+        </div>
+        <div class="service-num">01</div>
+        <div class="service-name">Vstupní návštěva</div>
+        <div class="service-desc">Komplexní vyšetření, odstranění zubního kamene, AIR FLOW pigmentace, fluoridace skloviny, výběr pomůcek a nácvik správné techniky čištění.</div>
+        <div class="service-price">1 350 <span class="service-price-suffix">Kč</span></div>
+      </div>
+      <div class="service-card fade-up d2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="service-num">02</div>
+        <div class="service-name">Recall návštěva</div>
+        <div class="service-desc">Pravidelná preventivní péče — udržení výsledků vstupní návštěvy. Doporučeno 1–2× ročně dle stavu ústní dutiny.</div>
+        <div class="service-price">od 950 <span class="service-price-suffix">Kč</span></div>
+      </div>
+      <div class="service-card fade-up d3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="service-num">03</div>
+        <div class="service-name">Domácí bělení</div>
+        <div class="service-desc">Výroba individuálních nosičů (dlah) a sada bělicích gelů pro pohodlné bělení zubů doma. Přirozené a dlouhotrvající výsledky.</div>
+        <div class="service-price">5 800 <span class="service-price-suffix">Kč</span></div>
+      </div>
+      <div class="service-card fade-up d1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-5 3.6 1.9 5.8L12 15l-4.9 3.2 1.9-5.8-5-3.6h6.1z"/></svg>
+        </div>
+        <div class="service-num">04</div>
+        <div class="service-name">Ordinační bělení</div>
+        <div class="service-desc">Profesionální bělení přímo v ordinaci s okamžitým efektem. Bezpečná a kontrolovaná metoda pod dohledem odborníka.</div>
+        <div class="service-price">6 000 <span class="service-price-suffix">Kč</span></div>
+      </div>
+      <div class="service-card fade-up d2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <div class="service-num">05</div>
+        <div class="service-name">AIR FLOW</div>
+        <div class="service-desc">Šetrná a efektivní metoda odstranění pigmentací, plaku a bakteriálního biofilmu pomocí proudu vzduchu, vody a jemného prášku.</div>
+        <div class="service-price">v ceně <span class="service-price-suffix">návštěvy</span></div>
+      </div>
+      <div class="service-card fade-up d3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="service-num">06</div>
+        <div class="service-name">Léčba parodontitidy</div>
+        <div class="service-desc">Diagnostika a léčba zánětu dásní a parodontitidy. Krvácení dásní, recese, záněty — komplexní přístup k parodontologickým problémům.</div>
+        <div class="service-price">dle rozsahu <span class="service-price-suffix">od 950 Kč</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE services → process -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#F0F4FF;">
+  <path d="M-50,40 C360,80 1080,0 1490,40 L1490,80 L-50,80 Z" fill="#ffffff"/>
+</svg>
+
+<!-- PROCESS -->
+<section class="process" id="postup">
+  <div class="section-inner">
+    <div class="section-header fade-up" style="text-align:center; margin-left:auto; margin-right:auto; max-width:600px;">
+      <span class="section-tag">Jak to probíhá</span>
+      <h2 class="section-title">Vaše návštěva krok za krokem</h2>
+      <p class="section-subtitle">Víme, že první návštěva může být nervózní. Proto vám přesně vysvětlujeme, co vás čeká.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step fade-up d1">
+        <div class="process-step-num">1</div>
+        <div class="process-step-title">Objednání</div>
+        <div class="process-step-text">Zavolejte nebo vyplňte kontaktní formulář. Domluvíme termín, který vám vyhovuje.</div>
+      </div>
+      <div class="process-step fade-up d2">
+        <div class="process-step-num">2</div>
+        <div class="process-step-title">Vyšetření</div>
+        <div class="process-step-text">Kompletní vyšetření zubů, dásní a měkkých tkání. Zjistíme aktuální stav ústní dutiny.</div>
+      </div>
+      <div class="process-step fade-up d3">
+        <div class="process-step-num">3</div>
+        <div class="process-step-title">Ošetření</div>
+        <div class="process-step-text">Odstranění zubního kamene, AIR FLOW, fluoridace — šetrně a efektivně.</div>
+      </div>
+      <div class="process-step fade-up d4">
+        <div class="process-step-num">4</div>
+        <div class="process-step-title">Edukace</div>
+        <div class="process-step-text">Ukážeme vám správnou techniku čištění a vybereme pomůcky přesně pro váš chrup.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE process → hours -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#fff;">
+  <path d="M-50,40 C360,0 1080,80 1490,40 L1490,80 L-50,80 Z" fill="#111827"/>
+</svg>
+
+<!-- HOURS -->
+<section class="hours" id="ordinacni-doba">
+  <div class="section-inner">
+    <div class="hours-grid">
+      <div>
+        <span class="section-tag">Ordinační doba</span>
+        <h2 class="section-title" style="color:#fff; margin-bottom:0.8rem;">Kdy nás najdete</h2>
+        <p class="section-subtitle" style="margin-bottom:2.5rem;">Ordinujeme od pondělí do pátku. Na individuální termíny jsme k dispozici i mimo standardní hodiny.</p>
+        <table class="hours-table">
+          <tr><td>Pondělí</td><td>7:30 – 15:00</td></tr>
+          <tr><td>Úterý</td><td>7:30 – 18:00</td></tr>
+          <tr><td>Středa</td><td>7:30 – 13:00</td></tr>
+          <tr><td>Čtvrtek</td><td>7:30 – 15:00</td></tr>
+          <tr><td>Pátek</td><td>7:30 – 13:00</td></tr>
+          <tr><td>Sobota – Neděle</td><td class="closed">Dle domluvy</td></tr>
+        </table>
+        <div class="hours-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Víkendové a odpolední termíny jsou dostupné dle individuální domluvy.
+        </div>
+      </div>
+      <div>
+        <div class="hours-cta-box">
+          <h3>Rezervujte termín</h3>
+          <p>Zavolejte nám nebo vyplňte kontaktní formulář. Odpovídáme co nejdříve.</p>
+          <a href="tel:+420731657079" class="btn-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            731 657 079
+          </a>
+          <div class="hours-phone">nebo napište na <a href="mailto:obalova.alca@seznam.cz">obalova.alca@seznam.cz</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE hours → contact -->
+<svg class="wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#111827;">
+  <path d="M-50,40 C360,80 1080,0 1490,40 L1490,80 L-50,80 Z" fill="#FAFCFF"/>
+</svg>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="section-inner">
+    <div class="section-header fade-up" style="text-align:center; margin-left:auto; margin-right:auto; max-width:520px;">
+      <span class="section-tag">Kontakt</span>
+      <h2 class="section-title">Napište nebo zavolejte</h2>
+      <p class="section-subtitle">Budeme rádi za váš zájem. Objednání je snadné.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <h3>Kde a jak nás najdete</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Telefon</div>
+            <div class="contact-item-value"><a href="tel:+420731657079">+420 731 657 079</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">E-mail</div>
+            <div class="contact-item-value"><a href="mailto:obalova.alca@seznam.cz">obalova.alca@seznam.cz</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Adresa</div>
+            <div class="contact-item-value">Dlouhá 228, Dům HUBERT<br>686 01 Uherské Hradiště</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Ordinační doba</div>
+            <div class="contact-item-value">Po–Pá: 7:30 – 15:00 / 18:00<br><small style="color:var(--muted); font-size:0.85rem;">Středa a Pátek do 13:00</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form fade-up d2">
+        <h3>Napište nám</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Jméno a příjmení *</label>
+              <input type="text" id="fname" name="jmeno" placeholder="Jana Nováková" required>
+            </div>
+            <div class="form-group">
+              <label for="fphone">Telefon *</label>
+              <input type="tel" id="fphone" name="telefon" placeholder="+420 777 888 999" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="femail">E-mail</label>
+            <input type="email" id="femail" name="email" placeholder="jana@email.cz">
+          </div>
+          <div class="form-group">
+            <label for="fservice">Zájem o</label>
+            <select id="fservice" name="sluzba">
+              <option value="">Vyberte službu...</option>
+              <option>Vstupní návštěva (1 350 Kč)</option>
+              <option>Recall návštěva (od 950 Kč)</option>
+              <option>Domácí bělení (5 800 Kč)</option>
+              <option>Ordinační bělení (6 000 Kč)</option>
+              <option>Konzultace / dotaz</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fmsg">Zpráva</label>
+            <textarea id="fmsg" name="zprava" placeholder="Váš dotaz nebo preferovaný termín..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Odeslat zprávu →</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">✅</div>
+          <p>Zpráva odeslána! Ozveme se vám co nejdříve.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-wrapper">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2604.831!2d17.458!3d49.069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712d0e8c7b8a1a1%3A0x0!2sDlouh%C3%A1%20228%2C%20686%2001%20Uhersk%C3%A9%20Hradi%C5%A1t%C4%9B!5e0!3m2!1scs!2scz!4v1234567890"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa — Dentální hygiena Alena Obalová">
+    </iframe>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo" style="display:inline-flex;">
+        <div class="nav-logo-icon" style="background:#4F46E5;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
+            <path d="M12 2C8 2 5 5.5 5 9c0 2.5 1 4.5 2.5 6L9 20h6l1.5-5C18 13.5 19 11.5 19 9c0-3.5-3-7-7-7z"/>
+            <path d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3"/>
+          </svg>
+        </div>
+        <span class="nav-logo-text" style="font-size:1.4rem;">DH<span>obalová</span></span>
+      </a>
+      <p>Dentální hygiena v centru Uherského Hradiště. Profesionální péče o váš úsměv — pro celou rodinu.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigace</h4>
+      <ul>
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#sluzby">Služby a ceník</a></li>
+        <li><a href="#postup">Jak to probíhá</a></li>
+        <li><a href="#ordinacni-doba">Ordinační doba</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <p>
+        <a href="tel:+420731657079" style="color:rgba(255,255,255,0.6); text-decoration:none;">+420 731 657 079</a><br>
+        <a href="mailto:obalova.alca@seznam.cz" style="color:rgba(255,255,255,0.6); text-decoration:none;">obalova.alca@seznam.cz</a><br><br>
+        Dlouhá 228, Dům HUBERT<br>686 01 Uherské Hradiště
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Alena Obalová, DiS. — Dentální hygiena Uherské Hradiště</span>
+    <span>Všechna práva vyhrazena</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('formSuccess').classList.add('visible');
+  });
+</script>
+</body>
+</html>
