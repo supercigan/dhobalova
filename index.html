@@ -61,11 +61,18 @@
       flex-shrink: 0;
     }
     .nav-logo-icon svg { width: 22px; height: 22px; }
-    .nav-logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 800; color: var(--dark); }
-    .nav-logo-text span { color: var(--indigo); }
-    nav.scrolled .nav-logo-text { color: var(--dark); }
-    nav:not(.scrolled) .nav-logo-text { color: var(--white); }
-    nav:not(.scrolled) .nav-logo-text span { color: #a5b4fc; }
+    .nav-logo-stack { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
+    .logo-eyebrow {
+      font-family: 'Nunito', sans-serif; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.18em;
+    }
+    .logo-name {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 800;
+    }
+    nav:not(.scrolled) .logo-eyebrow { color: rgba(255,255,255,0.55); }
+    nav:not(.scrolled) .logo-name { color: #fff; }
+    nav.scrolled .logo-eyebrow { color: var(--indigo); }
+    nav.scrolled .logo-name { color: var(--dark); }
 
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-links a {
@@ -564,7 +571,10 @@
           <path d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3"/>
         </svg>
       </div>
-      <span class="nav-logo-text">DH<span>obalová</span></span>
+      <div class="nav-logo-stack">
+          <span class="logo-eyebrow">DH · Dentální hygiena</span>
+          <span class="logo-name">Obalová</span>
+        </div>
     </a>
     <div class="nav-links">
       <a href="#o-nas">O nás</a>
@@ -984,7 +994,10 @@
             <path d="M9 9c0-1.7 1.3-3 3-3s3 1.3 3 3"/>
           </svg>
         </div>
-        <span class="nav-logo-text" style="font-size:1.4rem;">DH<span>obalová</span></span>
+        <div class="nav-logo-stack">
+            <span class="logo-eyebrow" style="color:var(--indigo);">DH · Dentální hygiena</span>
+            <span class="logo-name" style="color:#fff; font-size:1.2rem;">Obalová</span>
+          </div>
       </a>
       <p>Dentální hygiena v centru Uherského Hradiště. Profesionální péče o váš úsměv — pro celou rodinu.</p>
     </div>
